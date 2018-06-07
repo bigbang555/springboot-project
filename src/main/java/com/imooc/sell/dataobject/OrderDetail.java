@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 /**
  * Created by Horizon
@@ -33,7 +34,7 @@ public class OrderDetail {
     /**
      * 商品价格.
      */
-    private String productPrice;
+    private BigDecimal productPrice;
 
     /**
      * 商品数量.

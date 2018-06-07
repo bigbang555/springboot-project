@@ -1,12 +1,10 @@
-package com.imooc.sell.dataobject;
+package com.imooc.sell.dto;
 
+import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.enums.OrderStatusEnum;
 import com.imooc.sell.enums.PayStatusEnum;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,18 +12,15 @@ import java.util.List;
 
 /**
  * Created by Horizon
- * Time: 16:59 2018/6/6
+ * Time: 18:44 2018/6/6
  * Description:
  */
-@Entity
 @Data
-@DynamicUpdate
-public class OrderMaster {
+public class OrderDTO {
 
     /**
      * 订单id.
      */
-    @Id
     private String orderId;
 
     /**
@@ -56,12 +51,12 @@ public class OrderMaster {
     /**
      * 订单状态，默认为0新下单.
      */
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    private Integer orderStatus;
 
     /**
      * 支付状态，默认为0支付.
      */
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus;
 
     /**
      * 创建时间.
@@ -73,8 +68,5 @@ public class OrderMaster {
      */
     private Date updateTime;
 
-    @Transient
     private List<OrderDetail> orderDetailList;
-
-
 }

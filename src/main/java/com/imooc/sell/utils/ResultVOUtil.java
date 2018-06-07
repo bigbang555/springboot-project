@@ -13,8 +13,8 @@ public class ResultVOUtil {
     public static ResultVO success(Object object) {
         ResultVO resultVO = new ResultVO();
         resultVO.setData(object);
-        resultVO.setCode(ResultEnum.SUCCESS.getCode());
-        resultVO.setMsg(ResultEnum.SUCCESS.getMsg());
+        resultVO.setCode(0);
+        resultVO.setMsg("成功");
         return resultVO;
     }
 
@@ -22,10 +22,10 @@ public class ResultVOUtil {
         return success(null);
     }
 
-    public static ResultVO failure() {
+    public static ResultVO failure(Integer code, String msg) {
         ResultVO resultVO = new ResultVO();
-        resultVO.setCode(ResultEnum.FAILURE.getCode());
-        resultVO.setMsg(ResultEnum.FAILURE.getMsg());
+        resultVO.setCode(code);
+        resultVO.setMsg(msg );
         return resultVO;
     }
 }
