@@ -37,13 +37,13 @@ public class OrderMasterRepositoryTest {
         orderMaster.setBuyerAddress("慕课网");
         orderMaster.setBuyerOpenid(OPENID);
         orderMaster.setOrderAmount(new BigDecimal(2.5));
-        OrderMaster result = repository.save (orderMaster);
+        OrderMaster result = repository.save(orderMaster);
         Assert.assertNotNull(result);
     }
 
     @Test
     public void findByBuyerOpenid() {
-        PageRequest pageRequest = new PageRequest(1, 3);
+        PageRequest pageRequest = PageRequest.of(1, 3);
         Page<OrderMaster> result = repository.findByBuyerOpenid(OPENID, pageRequest);
         Assert.assertNotEquals(0, result.getTotalElements());
     }

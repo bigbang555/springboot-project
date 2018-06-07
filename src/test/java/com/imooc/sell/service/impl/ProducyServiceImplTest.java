@@ -39,7 +39,7 @@ public class ProducyServiceImplTest {
 
     @Test
     public void findAll() {
-        PageRequest pageRequest = new PageRequest(0,2);
+        PageRequest pageRequest = PageRequest.of(0,2);
         Page<ProductInfo> productInfoPage = productService.findAll(pageRequest);
 //        System.out.println(productInfoPage.getTotalElements());
         Assert.assertNotEquals(0,productInfoPage.getTotalElements());

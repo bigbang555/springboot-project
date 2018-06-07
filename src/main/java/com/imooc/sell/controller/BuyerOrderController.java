@@ -6,6 +6,7 @@ import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.enums.ResultEnum;
 import com.imooc.sell.exception.SellException;
 import com.imooc.sell.form.OrderForm;
+import com.imooc.sell.service.BuyerService;
 import com.imooc.sell.service.OrderService;
 import com.imooc.sell.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,9 @@ public class BuyerOrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private BuyerService buyerService;
+
     @PostMapping("/create")
     public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm,
                                                 BindingResult bindingResult) {
@@ -62,14 +66,26 @@ public class BuyerOrderController {
             log.error("【查询订单列表】 openid为空");
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
-        PageRequest pageRequest = new PageRequest(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(openid, pageRequest);
         return ResultVOUtil.success(orderDTOPage.getContent());
     }
 
-    //取消订单
 
-    //订单详情
+    @PostMapping("/cancel")
+    public ResultVO cancel(@RequestParam("openid") String openid,
+                           @RequestParam("orderId") String orderId) {
+        buyerService.cancelOrder(openid, orderId);
+        return ResultVOUtil.success();
+    }
+
+
+    @GetMapping("/detail")
+    public ResultVO<OrderDTO> detail(@RequestParam(value = "openid", required = true) String openId,
+                                     @RequestParam(value = "orderId", required = true) String orderId) {
+        OrderDTO orderDTO = buyerService.findOrderOne(openId, orderId);
+        return ResultVOUtil.success(orderDTO);
+    }
 
 
 }
