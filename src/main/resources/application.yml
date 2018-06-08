@@ -19,3 +19,6 @@ server:
 #  file: C:\Users\Administrator\Desktop\sell.log
 #  level:
 #    com.imooc: debug
+wechat:
+  mpAppId: wxd898dcb01713c658
+  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
